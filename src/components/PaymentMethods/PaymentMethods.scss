@@ -1,0 +1,29 @@
+@import '/src/scss/vars';
+
+.PaymentMethods {
+  &__methodName {
+    @apply flex;
+    @apply items-center;
+    @apply w-full;
+    @apply p-4;
+    @apply text-base;
+    @apply font-bold;
+    @apply bg-slate-100;
+    @apply border-2;
+    @apply border-transparent;
+    @apply rounded-md;
+    @apply cursor-pointer;
+
+    &:hover {
+      @apply border-teal-500;
+    }
+  }
+
+  &__radio {
+    &:checked + .PaymentMethods__methodName {
+      @apply border-2;
+      @apply border-teal-600;
+      @apply text-teal-600;
+    }
+  }
+}

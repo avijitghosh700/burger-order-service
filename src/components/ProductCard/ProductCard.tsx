@@ -19,7 +19,7 @@ const ProductCard = (props: any) => {
   const orderCost = (burgerFiltered && burgerFiltered.current) && burgerFiltered.current?.cost;
 
   return (
-    <figure className="ProductCard bg-white border-solid border-2 border-gray-400 shadow-xl rounded-md p-3">
+    <figure className="ProductCard bg-white border-2 border-gray-400 shadow-xl rounded-md p-3">
       <div className="ProductCard__thumb bg-gray-200 grid place-content-center min-h-[120px] rounded-md mb-2">
         <FaHamburger size={"25px"} className="text-gray-600"/>
       </div>

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { IoTrash } from "react-icons/io5";
+
 import { NotFoundMessege } from "../../components/NotFoundMessage/NotFoundMessege";
+import { PaymentMethods } from "../../components/PaymentMethods/PaymentMethods";
 
 import CartContext from "../../context/CartContext";
 
@@ -14,7 +16,7 @@ const Cart = () => {
   const { burgers, totalCost, removeItemFromCart } = useContext(CartContext);
 
   const tableClassNames =
-    `border-collapse w-full border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm`;
+    `md:order-last order-first w-full border border-collapse border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm`;
   const thClassNames =
     `bg-gray-100 border border-slate-300 dark:border-slate-700 p-3 text-lg text-slate-500 dark:text-slate-400`;
   const tdClassNames =
@@ -22,7 +24,7 @@ const Cart = () => {
   const tdTfootClassNames =
     `bg-gray-100 border border-slate-300 dark:border-slate-700 p-3 text-center text-lg font-bold text-teal-600 dark:text-slate-400`;
 
-  const rows = burgers.map((burger: Burger) => (
+  const rows: HTMLTableRowElement = burgers.map((burger: Burger) => (
     <tr key={burger.id}>
       <td className={tdClassNames}>{burger.name}</td>
       <td className={tdClassNames}>
@@ -47,8 +49,9 @@ const Cart = () => {
     <section className="Cart py-[50px]">
       <div className={`container ${!burgers.length ? 'grid place-content-center h-full' : ''} mx-auto px-3`}>
         {burgers.length ? (
-          <div className="grid sm:grid-cols-2 grid-cols-1 gap-5">
-            Payment methods
+          <div className="grid lg:grid-cols-[500px_minmax(0,_1fr)] md:grid-cols-2 grid-cols-1 items-start gap-5">
+            <PaymentMethods classNames={'md:order-first order-last'}/>
+
             <table className={tableClassNames}>
               <thead>
                 <tr>

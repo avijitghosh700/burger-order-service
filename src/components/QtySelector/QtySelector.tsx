@@ -11,9 +11,9 @@ const QtySelector = (burger: Burger) => {
   const burgerFiltered: Burger = burgers.find((item: Burger) => item.id === burger.id);
 
   const mainElementClassNames =
-    "max-w-[100px] h-[30px] border-solid border-[1px] border-gray-900 rounded-md overflow-hidden";
+    "max-w-[100px] h-[30px] border-[1px] border-gray-900 rounded-md overflow-hidden";
   const inputClassNames =
-    "h-full w-1/3 p-0 text-center focus:ring-0 focus:border-teal-600 border-solid border-gray-900 border-x-[1px] border-y-0";
+    "h-full w-1/3 p-0 text-center focus:ring-0 focus:border-teal-600 border-gray-900 border-x-[1px] border-y-0";
 
   return (
     <div className={`QtySelector ${mainElementClassNames}`}>
