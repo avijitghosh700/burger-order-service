@@ -1,0 +1,118 @@
+{
+  "burgers": [
+  {
+    "id": "62454d46b20eea2c9edda4ae",
+    "name": "Burger-1",
+    "cost": 57.98,
+    "stock": 40
+  },
+  {
+    "id": "62454d46275c5561e38ab06a",
+    "name": "Burger-2",
+    "cost": 287.41,
+    "stock": 9
+  },
+  {
+    "id": "62454d46aedbd98367fbd2ed",
+    "name": "Burger-3",
+    "cost": 87.47,
+    "stock": 18
+  },
+  {
+    "id": "62454d46390a404d5ba25586",
+    "name": "Burger-4",
+    "cost": 205.82,
+    "stock": 30
+  },
+  {
+    "id": "62454d464ef32994da0c9753",
+    "name": "Burger-5",
+    "cost": 67.74,
+    "stock": 14
+  },
+  {
+    "id": "62454d46114403101678e60a",
+    "name": "Burger-6",
+    "cost": 213.22,
+    "stock": 4
+  },
+  {
+    "id": "62454d464739c42d3c8820ef",
+    "name": "Burger-7",
+    "cost": 393.87,
+    "stock": 4
+  },
+  {
+    "id": "62454d46f1cd9171cbb95d0a",
+    "name": "Burger-8",
+    "cost": 108.02,
+    "stock": 9
+  },
+  {
+    "id": "62454d46a4e299edaf77304e",
+    "name": "Burger-9",
+    "cost": 300.22,
+    "stock": 30
+  },
+  {
+    "id": "62454d46aedb6af8a771ab1b",
+    "name": "Burger-10",
+    "cost": 217.58,
+    "stock": 5
+  },
+  {
+    "id": "62454d464f49ddbab19eb0ee",
+    "name": "Burger-11",
+    "cost": 373.75,
+    "stock": 18
+  },
+  {
+    "id": "62454d469a99c1179b0276eb",
+    "name": "Burger-12",
+    "cost": 369.18,
+    "stock": 38
+  },
+  {
+    "id": "62454d46f69a6a23acbdae9f",
+    "name": "Burger-13",
+    "cost": 49.35,
+    "stock": 33
+  },
+  {
+    "id": "62454d468b5d14e47e836086",
+    "name": "Burger-14",
+    "cost": 275.54,
+    "stock": 36
+  },
+  {
+    "id": "62454d4639198c85994c34e0",
+    "name": "Burger-15",
+    "cost": 292.52,
+    "stock": 38
+  },
+  {
+    "id": "62454d4696e9d3e3822fbb55",
+    "name": "Burger-16",
+    "cost": 52.87,
+    "stock": 30
+  },
+  {
+    "id": "62454d46cf3cc47efe912812",
+    "name": "Burger-17",
+    "cost": 163.89,
+    "stock": 1
+  },
+  {
+    "id": "62454d463f0241fb56c0bf8b",
+    "name": "Burger-18",
+    "cost": 192.85,
+    "stock": 11
+  },
+  {
+    "id": "62454d46fae01d4e58797d99",
+    "name": "Burger-19",
+    "cost": 291.33,
+    "stock": 12
+  }
+  ]
+}

@@ -1,0 +1,28 @@
+@import '/src/scss/vars';
+
+.Header {
+  &__logo {
+    color: #fff;
+  }
+
+  &__menuLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__cartLink {
+    padding: 5px;
+    border-radius: 20px;
+    background-color: $sky;
+    gap: 3px;
+
+    &--count {
+      min-width: 12px;
+      height: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
