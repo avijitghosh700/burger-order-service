@@ -4,6 +4,7 @@
   &__methodName {
     @apply flex;
     @apply items-center;
+    @apply gap-2;
     @apply w-full;
     @apply p-4;
     @apply text-base;
@@ -25,5 +26,21 @@
       @apply border-teal-600;
       @apply text-teal-600;
     }
+
+    &:checked + .PaymentMethods__methodName > .PaymentMethods__mark {
+      @apply border-8;
+      @apply border-teal-600;
+    }
+  }
+
+  &__mark {
+    @apply flex;
+    @apply items-center;
+    @apply w-6;
+    @apply h-6;
+    @apply rounded-full;
+    @apply bg-white;
+    @apply border;
+    @apply border-slate-400;
   }
 }

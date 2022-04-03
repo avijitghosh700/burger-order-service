@@ -26,6 +26,7 @@ export const PaymentMethods = ({ classNames }: { [k: string]: any }) => {
               onChange={() => setIsCOD(true)}
             />
             <label className={`PaymentMethods__methodName`} htmlFor="cod">
+              <span className="PaymentMethods__mark"></span>
               Cash on delivery
             </label>
           </div>
@@ -40,6 +41,7 @@ export const PaymentMethods = ({ classNames }: { [k: string]: any }) => {
               onChange={() => setIsCOD(false)}
             />
             <label className={`PaymentMethods__methodName`} htmlFor="card">
+              <span className="PaymentMethods__mark"></span>
               Debit/Credit Card
             </label>
           </div>
