@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import CartContext from "../../context/CartContext";
 
@@ -9,6 +10,7 @@ import "./PaymentMethods.scss";
 export const PaymentMethods = ({ classNames }: { [k: string]: any }) => {
   const { totalCost } = useContext(CartContext);
   const [isCOD, setIsCOD] = useState(false);
+  const navigate = useNavigate();
 
   const loadScript = (src: string): Promise<boolean> => {
     return new Promise((resolve, reject) => {
@@ -30,36 +32,39 @@ export const PaymentMethods = ({ classNames }: { [k: string]: any }) => {
 
     const win = window as any;
     const options = {
-      key: "rzp_test_vgLJKqT9Sz3TnV", // Enter the Key ID generated from the Dashboard
+      key: "rzp_test_dfjXPqCyTKp0Bt", // Enter the Key ID generated from the Dashboard
       amount: totalCost * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "BurgerOrderApp",
       description: `Your order for ${formattedCost(totalCost, "en-IN", "INR")}`,
       image: "",
-      order_id: "order_JFcJMhxukdUKdz", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      order_id: "order_JGqHXUq9eqnFBx", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       handler: function (response: Record<any, any>) {
-        console.log(response);
+        console.log(response, 'Success');
+        navigate('/Success');
       },
-      // prefill: {
-      //   name: "Gaurav Kumar",
-      //   email: "gaurav.kumar@example.com",
-      //   contact: "9999999999",
-      // },
-      // notes: {
-      //   address: "Razorpay Corporate Office",
-      // },
+      prefill: {
+        name: "BurgerOrderApp",
+        email: "help@burgerorder.com",
+        contact: "8334831533",
+      },
       theme: {
         color: "#10b981",
       },
     };
+
     const rzp = new win.Razorpay(options);
     rzp.on("payment.failed", function (response: Record<any, any>) {
-      console.log(response);
+      console.log(response, 'Failed');
     });
 
     rzp.open();
     setIsCOD(false);
   };
+
+  const moveToSuccess = () => {
+    navigate('/Success');
+  }
 
   return (
     <div className={`PaymentMethods ${classNames}`}>
@@ -67,7 +72,7 @@ export const PaymentMethods = ({ classNames }: { [k: string]: any }) => {
         <h2 className="text-3xl mb-2">Choose payment type</h2>
       </div>
       <div className="PaymentMethods__body">
-        <div className="grid rid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div className="PaymentMethods__method rounded-md shadow-md">
             <input
               type="radio"
@@ -101,7 +106,10 @@ export const PaymentMethods = ({ classNames }: { [k: string]: any }) => {
 
         {isCOD && (
           <div className="PaymentMethods__btnGrp mt-5">
-            <button className="w-full px-4 py-3 rounded-md bg-slate-900 text-white shadow-md">
+            <button 
+              type="button" 
+              className="w-full px-4 py-3 rounded-md bg-slate-900 text-white shadow-md"
+              onClick={moveToSuccess}>
               Place Order
             </button>
           </div>

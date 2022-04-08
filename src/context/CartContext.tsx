@@ -71,6 +71,10 @@ export const CartProvider = ({ children }: any) => {
   const removeItemFromCart = (burger: Burger) => {
     setBurgers((state) => state.filter((item) => item.id !== burger.id))
   }
+  
+  const resetCart = () => {
+    setBurgers([]);
+  }
 
   return (
     <CartContext.Provider 
@@ -79,7 +83,8 @@ export const CartProvider = ({ children }: any) => {
         totalCost,
         addToCart,
         removeFromCart,
-        removeItemFromCart
+        removeItemFromCart,
+        resetCart
       }}
     >
       {children}
