@@ -13,7 +13,7 @@ const Success = () => {
   useEffect(() => {
     return () => {
       setTimeout(() => {
-        navigate('/');
+        navigate('/List');
         resetCart();
       }, 3000);
     }

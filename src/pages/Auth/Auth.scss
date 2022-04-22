@@ -1,0 +1,36 @@
+@import '/src/scss/vars';
+
+.Auth {
+  &__tab {
+    @apply max-w-lg;
+    @apply mx-auto;
+    @apply rounded-md;
+    @apply border;
+    @apply border-gray-500;
+    @apply shadow-lg;
+    @apply overflow-hidden;
+  }
+
+  &__tabNav {
+    @apply flex;
+    @apply items-center;
+    @apply flex-nowrap;
+    @apply border-b;
+    @apply border-gray-500;
+  }
+
+  &__tabBody {
+    @apply p-4;
+  }
+
+  &__tabNavItem {
+    @apply sm:w-1/2;
+    @apply w-full;
+  }
+
+  &__tabNavButton {
+    @apply h-[45px];
+    @apply w-full;
+    @apply font-bold;
+  }
+}

@@ -17,7 +17,6 @@ const Cart = () => {
         {burgers.length ? (
           <div className="grid lg:grid-cols-[500px_minmax(0,_1fr)] md:grid-cols-2 grid-cols-1 items-start gap-5">
             <PaymentMethods classNames={'md:order-first order-last'}/>
-
             <Summary isAction={true}/>
           </div>
         ) : (

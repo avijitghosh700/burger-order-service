@@ -18,3 +18,57 @@ body {
     margin: 0;
   }
 }
+
+.btn {
+  &__primary {
+    @apply flex;
+    @apply items-center;
+    @apply bg-[#10b981];
+    @apply text-white;
+    @apply h-[40px];
+    @apply px-4;
+    @apply rounded-lg;
+    @apply shadow;
+    @apply duration-300;
+    @apply ease-in-out;
+
+    &:hover {
+      background-color: darken($sky, 5%);
+    }
+  }
+}
+
+.credential {
+  &__input {
+    @apply w-full;
+    @apply h-[45px];
+    @apply border;
+    @apply border-gray-500;
+    @apply shadow;
+    @apply rounded-lg;
+
+    &.isError {
+      @apply border-2;
+      @apply border-red-600;
+
+      &::placeholder {
+        @apply text-red-600;
+      }
+
+      &:focus {
+        @apply border-red-600;
+      }
+    }
+    
+    &:focus {
+      @apply ring-0;
+      @apply border-2;
+      @apply border-teal-600;
+    }
+  }
+
+  & .error {
+    @apply text-sm;
+    @apply text-red-600;
+  }
+}

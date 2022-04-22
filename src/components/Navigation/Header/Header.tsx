@@ -1,12 +1,17 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import { getAuth, signOut } from 'firebase/auth';
+
 import CartContext from '../../../context/CartContext';
 
 import './Header.scss'
+import { AiOutlineLogout } from 'react-icons/ai';
 
-const Header = () => {
+const Header = ({ user }: Record<string, any>) => {
   const { burgers } = useContext(CartContext);
+
+  const auth = getAuth();
 
   return (
     <header className="Header bg-gray-900 py-2">
@@ -18,7 +23,7 @@ const Header = () => {
 
           <ul className="Header__menuList flex gap-3 ml-auto">
             <li className="Header__menuItem flex">
-              <Link to="/" className="Header__menuLink text-white hover:text-teal-600">
+              <Link to="/List" className="Header__menuLink text-white hover:text-teal-600">
                 <i className="las la-home la-lg"></i>
               </Link>
             </li>
@@ -27,6 +32,15 @@ const Header = () => {
                 <i className="las la-shopping-bag la-lg"></i>
                 <span className="Header__cartLink--count text-[14px]">{burgers.length}</span>
               </Link>
+            </li>
+            <li className="Header__menuItem flex ml-4">
+              <button 
+                type='button' 
+                className="Header__menuLink text-white hover:text-red-600"
+                onClick={() => signOut(auth)}
+              >
+                <AiOutlineLogout size={'22px'} />
+              </button>
             </li>
           </ul>
         </nav>
