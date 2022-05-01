@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MutableRefObject, useRef, useState } from "react";
 
 import { getAuth } from "firebase/auth";
 import {
@@ -11,7 +11,8 @@ import * as Yup from "yup";
 
 import "./Auth.scss";
 
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible, AiOutlineLoading3Quarters, AiOutlineWarning } from "react-icons/ai";
+import { IoClose } from "react-icons/io5";
 
 // Form objects
 const loginData: FormikValues = {
@@ -47,6 +48,12 @@ const Auth = () => {
   const auth = getAuth();
 
   const [formState, setFormState] = useState(1);
+  const [toggleSignIn, setToggleSignIn] = useState(false);
+  const [toggleSignUp, setToggleSignUp] = useState(false);
+
+  const signInErrorElem = useRef(null);
+  const signUpErrorElem = useRef(null);
+  
   const [
     createUserWithEmailAndPassword,
     newUser,
@@ -60,12 +67,33 @@ const Auth = () => {
     signInError
   ] = useSignInWithEmailAndPassword(auth);
 
-  const SignUp = async (data: FormikValues) => {
+  const switchTab = (value: number) => {
+    if (value === 1) setFormState(value);
+    else if (value === 2) setFormState(value);
+  }
+
+  const SignUp = (data: FormikValues) => {
     createUserWithEmailAndPassword(data.email, data.password);
   };
-  const SignIn = async (data: FormikValues) => {
+  const SignIn = (data: FormikValues) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
+
+  // const removeErrorAlert = (element: MutableRefObject<any>) => {
+  //   if (!element) return;
+  //   element.current.remove();
+  // }
+
+  const togglePassword = (type: string) => {
+    switch (type) {
+      case 'signin':
+        toggleSignIn ? setToggleSignIn(false) : setToggleSignIn(true);
+        break;
+      case 'signup':
+        toggleSignUp ? setToggleSignUp(false) : setToggleSignUp(true);
+        break;
+    }
+  }
 
   return (
     <section className="Auth py-[50px]">
@@ -76,7 +104,7 @@ const Auth = () => {
               <button
                 type="button"
                 className={`Auth__tabNavButton ${formState === 1 ? "bg-[#10b981] text-white" : ""}`}
-                onClick={() => setFormState(1)}
+                onClick={() => switchTab(1)}
               >
                 Login
               </button>
@@ -85,7 +113,7 @@ const Auth = () => {
               <button
                 type="button"
                 className={`Auth__tabNavButton ${formState === 2 ? "bg-[#10b981] text-white" : ""}`}
-                onClick={() => setFormState(2)}
+                onClick={() => switchTab(2)}
               >
                 Register
               </button>
@@ -116,14 +144,22 @@ const Auth = () => {
                       </div>
 
                       <div className="credential__formGrp mb-4">
-                        <Field
-                          type="password"
-                          name="password"
-                          className={`credential__input ${
-                            errors.password && touched.password ? "isError" : ""
-                          }`}
-                          placeholder="Password"
-                        />
+                        <div className="credential__password">
+                          <Field
+                            type={toggleSignIn ? "text" : "password"}
+                            name="password"
+                            className={`credential__input ${
+                              errors.password && touched.password ? "isError" : ""
+                            }`}
+                            placeholder="Password"
+                          />
+                          <button
+                            type="button" 
+                            className="credential__toggle"
+                            onClick={() => togglePassword('signin')}>
+                            {toggleSignIn ? <AiFillEyeInvisible size={'20px'}/> : <AiFillEye size={'20px'}/>}
+                          </button>
+                        </div>
                         <ErrorMessage name="password" component="span" className="error" />
                       </div>
 
@@ -195,14 +231,22 @@ const Auth = () => {
                       </div>
 
                       <div className="credential__formGrp mb-4">
-                        <Field
-                          type="password"
-                          name="password"
-                          className={`credential__input ${
-                            errors.password && touched.password ? "isError" : ""
-                          }`}
-                          placeholder="Password"
-                        />
+                        <div className="credential__password">
+                          <Field
+                            type={toggleSignUp ? "text" : "password"}
+                            name="password"
+                            className={`credential__input ${
+                              errors.password && touched.password ? "isError" : ""
+                            }`}
+                            placeholder="Password"
+                          />
+                          <button
+                            type="button" 
+                            className="credential__toggle"
+                            onClick={() => togglePassword('signup')}>
+                            {toggleSignUp ? <AiFillEyeInvisible size={'20px'}/> : <AiFillEye size={'20px'}/>}
+                          </button>
+                        </div>
                         <ErrorMessage name="password" component="span" className="error" />
                       </div>
 
@@ -221,6 +265,30 @@ const Auth = () => {
                   );
                 }}
               </Formik>
+            </div>
+          )}
+
+          {(signInError && formState === 1) && (
+            <div className="alert alert__danger" ref={signInErrorElem}>
+              <AiOutlineWarning size={'20px'} className="mr-2"/> {signInError?.code}
+              {/* <button 
+                type="button"
+                className="btn btn__action w-[30px] h-[30px] ml-auto"
+                onClick={() => removeErrorAlert(signInErrorElem)}>
+                <IoClose size={'20px'}/>
+              </button> */}
+            </div>
+          )}
+          
+          {(signUpError && formState === 2) && (
+            <div className="alert alert__danger" ref={signUpErrorElem}>
+              <AiOutlineWarning size={'20px'} className="mr-2"/> {signUpError?.code}
+              {/* <button 
+                type="button"
+                className="btn btn__action w-[30px] h-[30px] ml-auto"
+                onClick={() => removeErrorAlert(signUpErrorElem)}>
+                <IoClose size={'20px'}/>
+              </button> */}
             </div>
           )}
         </div>

@@ -36,6 +36,29 @@ body {
       background-color: darken($sky, 5%);
     }
   }
+
+  &__action {
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply rounded-full;
+    @apply bg-red-300;
+    @apply text-red-600;
+  }
+}
+
+.alert {
+  @apply flex;
+  @apply items-center;
+
+  &__danger {
+    @apply p-4;
+    @apply bg-red-200;
+    @apply text-sm;
+    @apply font-semibold;
+    @apply text-red-500;
+    @apply capitalize;
+  }
 }
 
 .credential {
@@ -64,6 +87,31 @@ body {
       @apply ring-0;
       @apply border-2;
       @apply border-teal-600;
+    }
+  }
+
+  &__password {
+    @apply relative;
+    @apply flex;
+    @apply items-center;
+
+    .credential__input {
+      @apply pr-10;
+    }
+  }
+
+  &__toggle {
+    @apply grid;
+    @apply place-content-center;
+    @apply absolute;
+    @apply right-3;
+    @apply w-[30px];
+    @apply h-[30px];
+    @apply rounded-full;
+    @apply transition-all duration-300 ease-linear;
+
+    &:hover {
+      @apply bg-[#10b981];
     }
   }
 

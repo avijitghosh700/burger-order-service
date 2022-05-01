@@ -38,10 +38,10 @@ export const PaymentMethods = ({ classNames }: { [k: string]: any }) => {
       name: "BurgerOrderApp",
       description: `Your order for ${formattedCost(totalCost, "en-IN", "INR")}`,
       image: "",
-      order_id: "order_JGqHXUq9eqnFBx", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      order_id: "order_JNSc0qP15QCJSw", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       handler: function (response: Record<any, any>) {
-        console.log(response, 'Success');
-        navigate('/Success');
+        console.log(response, "Success");
+        navigate("/Success");
       },
       prefill: {
         name: "BurgerOrderApp",
