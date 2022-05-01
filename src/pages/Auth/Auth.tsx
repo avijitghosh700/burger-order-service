@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { getAuth } from "firebase/auth";
 import {
@@ -12,7 +12,6 @@ import * as Yup from "yup";
 import "./Auth.scss";
 
 import { AiFillEye, AiFillEyeInvisible, AiOutlineLoading3Quarters, AiOutlineWarning } from "react-icons/ai";
-import { IoClose } from "react-icons/io5";
 
 // Form objects
 const loginData: FormikValues = {
@@ -55,14 +54,12 @@ const Auth = () => {
   const signUpErrorElem = useRef(null);
   
   const [
-    createUserWithEmailAndPassword,
-    newUser,
+    createUserWithEmailAndPassword,,
     signUpLoading,
     signUpError
   ] = useCreateUserWithEmailAndPassword(auth);
   const [
-    signInWithEmailAndPassword,
-    user,
+    signInWithEmailAndPassword,,
     signInLoading,
     signInError
   ] = useSignInWithEmailAndPassword(auth);
