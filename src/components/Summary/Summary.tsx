@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { ReactNode, useContext } from 'react'
 import { IoTrash } from 'react-icons/io5';
 
 import CartContext from '../../context/CartContext';
@@ -19,7 +19,7 @@ export const Summary = ({ isAction }: Record<string, boolean>) => {
   const tdTfootClassNames =
     `bg-gray-100 border border-slate-300 dark:border-slate-700 p-3 text-center text-lg font-bold text-teal-600 dark:text-slate-400`;
 
-  const rows: HTMLTableRowElement = burgers.map((burger: Burger) => (
+  const rows: ReactNode = burgers.map((burger: Burger) => (
     <tr key={burger.id}>
       <td className={tdClassNames}>{burger.name}</td>
       <td className={tdClassNames}>
