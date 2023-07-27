@@ -6,22 +6,29 @@ import { Burger } from "../helpers/interfaces/burger.model";
 
 const CartContext = createContext<any>(null);
 
-export const CartProvider = ({ children }: any) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+export const CartProvider = ({ children }: Props) => {
   const [burgers, setBurgers] = useState<Burger[]>([]);
 
-  const totalCost: number = burgers.reduce((cost, burger) => cost += (burger.current?.cost as number), 0);
+  const totalCost: number = burgers.reduce(
+    (cost, burger) => (cost += burger.current?.cost as number),
+    0
+  );
 
   const addToCart = (burger: Burger) => {
-    const addedToCart: Burger | undefined = burgers.find(item => item.id === burger.id);
-    
+    const addedToCart: Burger | undefined = burgers.find((item) => item.id === burger.id);
+
     if (addedToCart && addedToCart.current) {
       const currentOfAdded = addedToCart.current;
 
-      if (currentOfAdded.count < (+burger.stock)) {
+      if (currentOfAdded.count < +burger.stock) {
         currentOfAdded.count += 1;
-        currentOfAdded.cost = decimalLimitter(currentOfAdded.cost + (+burger.cost), 2);
+        currentOfAdded.cost = decimalLimitter(currentOfAdded.cost + +burger.cost, 2);
       } else {
-        currentOfAdded.count = (+burger.stock);
+        currentOfAdded.count = +burger.stock;
       }
 
       setBurgers([...burgers]);
@@ -32,22 +39,22 @@ export const CartProvider = ({ children }: any) => {
           ...burger,
           current: {
             count: 1,
-            cost: (+burger.cost),
-          }
-        }
+            cost: +burger.cost,
+          },
+        },
       ]);
     }
-  }
+  };
 
   const removeFromCart = (burger: Burger) => {
-    const addedToCart: Burger | undefined = burgers.find(item => item.id === burger.id);
-      
+    const addedToCart: Burger | undefined = burgers.find((item) => item.id === burger.id);
+
     if (addedToCart && addedToCart.current) {
       const currentOfAdded = addedToCart.current;
 
       if (currentOfAdded.count > 0) {
         currentOfAdded.count -= 1;
-        currentOfAdded.cost = decimalLimitter(currentOfAdded.cost - (+burger.cost), 2);
+        currentOfAdded.cost = decimalLimitter(currentOfAdded.cost - +burger.cost, 2);
       } else {
         currentOfAdded.count = 0;
         currentOfAdded.cost = 0;
@@ -62,34 +69,34 @@ export const CartProvider = ({ children }: any) => {
           current: {
             count: 0,
             cost: 0,
-          }
-        }
+          },
+        },
       ]);
     }
-  }
+  };
 
   const removeItemFromCart = (burger: Burger) => {
-    setBurgers((state) => state.filter((item) => item.id !== burger.id))
-  }
-  
+    setBurgers((state) => state.filter((item) => item.id !== burger.id));
+  };
+
   const resetCart = () => {
     setBurgers([]);
-  }
+  };
 
   return (
-    <CartContext.Provider 
+    <CartContext.Provider
       value={{
         burgers,
         totalCost,
         addToCart,
         removeFromCart,
         removeItemFromCart,
-        resetCart
+        resetCart,
       }}
     >
       {children}
     </CartContext.Provider>
   );
-}
+};
 
 export default CartContext;
