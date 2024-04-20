@@ -29,7 +29,7 @@ const auth = getAuth();
 // For authenticated components
 const AuthProtectedComponents = ({ children }: Record<string, JSX.Element>) => {
   const [user] = useAuthState(auth);
-  
+
   console.log(user?.toJSON());
   return user ? children : null;
 };
@@ -53,13 +53,13 @@ function App() {
 
   return (
     <CartProvider>
-      <main className="App">
-        <AuthProtectedComponents>
-          <Header user={user}/>
-        </AuthProtectedComponents>
+      <AuthProtectedComponents>
+        <Header user={user} />
+      </AuthProtectedComponents>
 
+      <main className="App">
         <Routes>
-          <Route path="/" element={!user ? <Auth /> : <Navigate to={'/List'}/>} />
+          <Route path="/" element={!user ? <Auth /> : <Navigate to={"/List"} />} />
           <Route
             path="/List"
             element={
